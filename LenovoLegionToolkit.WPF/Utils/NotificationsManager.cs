@@ -236,10 +236,11 @@ public class NotificationsManager
         }
 
         var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, _settings.Store.NotificationPosition) { 
-            Owner = mainWindow 
-            Background = Brushes.Transparent,   // Set the background to transparent
-            WindowStyle = WindowStyle.None,      // No borders or title bar
-            AllowsTransparency = true           // Enable transparency
+            Owner = mainWindow,
+            WindowStyle = WindowStyle.None,     // Remove borders and title bar
+            AllowsTransparency = true,          // Enable transparency
+            Background = Brushes.Transparent,  // Set background to transparent
+            ShowInTaskbar = false              // Hide notification window from the taskbar
         };
 
         nw.Opacity = 0.6;
