@@ -13,6 +13,8 @@ using LenovoLegionToolkit.WPF.Windows;
 using LenovoLegionToolkit.WPF.Windows.Utils;
 using Wpf.Ui.Common;
 using Wpf.Ui.Controls;
+using System.Windows.Media;
+
 
 namespace LenovoLegionToolkit.WPF.Utils;
 
