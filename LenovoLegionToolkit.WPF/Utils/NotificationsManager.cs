@@ -46,13 +46,13 @@ public class NotificationsManager
                 return;
             }
 
-            if (FullscreenHelper.IsAnyApplicationFullscreen())
-            {
-                if (Log.Instance.IsTraceEnabled)
-                    Log.Instance.Trace($"Some application is in fullscreen.");
+            //if (FullscreenHelper.IsAnyApplicationFullscreen())
+            //{
+            //    if (Log.Instance.IsTraceEnabled)
+            //        Log.Instance.Trace($"Some application is in fullscreen.");
 
-                return;
-            }
+            //    return;
+            //}
 
             var allow = notification.Type switch
             {
