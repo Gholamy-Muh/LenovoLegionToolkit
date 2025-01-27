@@ -235,7 +235,15 @@ public class NotificationsManager
             _window.Close();
         }
 
-        var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, _settings.Store.NotificationPosition) { Owner = mainWindow };
+        var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, _settings.Store.NotificationPosition) { 
+            Owner = mainWindow 
+            Background = Brushes.Transparent,   // Set the background to transparent
+            WindowStyle = WindowStyle.None,      // No borders or title bar
+            AllowsTransparency = true           // Enable transparency
+        };
+
+        nw.Opacity = 0.6;
+
         nw.Show(_settings.Store.NotificationDuration switch
         {
             NotificationDuration.Short => 500,
