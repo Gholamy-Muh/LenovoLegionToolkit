@@ -249,7 +249,7 @@ public class NotificationsManager
         {
             foreach (var screen in ScreenHelper.Screens)
             {
-                var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, _settings.Store.NotificationPosition) 
+                var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, screen,_settings.Store.NotificationPosition) 
                 {
                 Owner = mainWindow,
                 WindowStyle = WindowStyle.None,     // Remove borders and title bar
