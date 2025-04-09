@@ -252,10 +252,10 @@ public class NotificationsManager
                 var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, screen,_settings.Store.NotificationPosition) 
                 {
                 Owner = mainWindow,
-                WindowStyle = WindowStyle.None,     // Remove borders and title bar
+                //WindowStyle = WindowStyle.None,     // Remove borders and title bar
                 AllowsTransparency = true,          // Enable transparency
                 Background = Brushes.Transparent,  // Set background to transparent
-                ShowInTaskbar = false              // Hide notification window from the taskbar
+                //ShowInTaskbar = false              // Hide notification window from the taskbar
                 };
                 nw.Opacity = 0.6;
                 nw.Show(_settings.Store.NotificationDuration switch
@@ -270,7 +270,15 @@ public class NotificationsManager
         }
         else
         {
-            var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, ScreenHelper.PrimaryScreen, _settings.Store.NotificationPosition) { Owner = mainWindow };
+            var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, ScreenHelper.PrimaryScreen, _settings.Store.NotificationPosition) 
+            {
+            Owner = mainWindow,
+            //WindowStyle = WindowStyle.None,     // Remove borders and title bar
+            AllowsTransparency = true,          // Enable transparency
+            Background = Brushes.Transparent,  // Set background to transparent
+            //ShowInTaskbar = false              // Hide notification window from the taskbar
+            };
+            nw.Opacity = 0.6;
             nw.Show(_settings.Store.NotificationDuration switch
             {
                 NotificationDuration.Short => 500,
