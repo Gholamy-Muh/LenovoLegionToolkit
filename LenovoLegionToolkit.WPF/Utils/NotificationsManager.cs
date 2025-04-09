@@ -252,7 +252,7 @@ public class NotificationsManager
                 var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, screen, _settings.Store.NotificationPosition) 
                 {
                 Owner = mainWindow,
-                // WindowStyle = WindowStyle.None,     // Remove borders and title bar
+                WindowStyle = WindowStyle.None,     // Remove borders and title bar
                 AllowsTransparency = true,          // Enable transparency
                 Background = Brushes.Transparent,  // Set background to transparent
                 // ShowInTaskbar = false              // Hide notification window from the taskbar
