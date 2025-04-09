@@ -249,6 +249,7 @@ public class NotificationsManager
             foreach (var screen in ScreenHelper.Screens)
             {
                 var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, screen, _settings.Store.NotificationPosition) { Owner = mainWindow };
+                nw.Opacity = 0.6;
                 nw.Show(_settings.Store.NotificationDuration switch
                 {
                     NotificationDuration.Short => 500,
