@@ -14,6 +14,7 @@ using LenovoLegionToolkit.WPF.Windows;
 using LenovoLegionToolkit.WPF.Windows.Utils;
 using Wpf.Ui.Common;
 using Wpf.Ui.Controls;
+using System.Windows.Media;
 
 namespace LenovoLegionToolkit.WPF.Utils;
 
@@ -248,7 +249,14 @@ public class NotificationsManager
         {
             foreach (var screen in ScreenHelper.Screens)
             {
-                var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, screen, _settings.Store.NotificationPosition) { Owner = mainWindow };
+                var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, screen, _settings.Store.NotificationPosition) 
+                {
+                Owner = mainWindow,
+                // WindowStyle = WindowStyle.None,     // Remove borders and title bar
+                AllowsTransparency = true,          // Enable transparency
+                Background = Brushes.Transparent,  // Set background to transparent
+                // ShowInTaskbar = false              // Hide notification window from the taskbar
+                };
                 nw.Opacity = 0.6;
                 nw.Show(_settings.Store.NotificationDuration switch
                 {
