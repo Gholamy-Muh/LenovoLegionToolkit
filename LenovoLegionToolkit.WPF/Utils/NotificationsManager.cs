@@ -243,55 +243,15 @@ public class NotificationsManager
         {
             foreach (var screen in ScreenHelper.Screens)
             {
-                var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, screen, _settings.Store.NotificationPosition) { Owner = mainWindow };
-                if (_settings.Store.NotificationAlwaysOnTop)
+                var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, screen,_settings.Store.NotificationPosition) 
                 {
-                    var bitmap = nw.GetBitmapView();
-                    var nwaot = new NotificationAoTWindow(bitmap, screen, _settings.Store.NotificationPosition);
-                    nwaot.Show(_settings.Store.NotificationDuration switch
-                    {
-                        NotificationDuration.Short => 500,
-                        NotificationDuration.Long => 2500,
-                        NotificationDuration.Normal => 1000,
-                        _ => throw new ArgumentException(nameof(_settings.Store.NotificationDuration))
-                    });
-                    _windows.Add(nwaot);
-                }
-                else
-                {
-                    nw.Show(_settings.Store.NotificationDuration switch
-                    {
-                        NotificationDuration.Short => 500,
-                        NotificationDuration.Long => 2500,
-                        NotificationDuration.Normal => 1000,
-                        _ => throw new ArgumentException(nameof(_settings.Store.NotificationDuration))
-                    });
-                    _windows.Add(nw);
-                }
-            }
-        }
-        else
-        {
-            var primaryScreen = ScreenHelper.PrimaryScreen;
-            if (!primaryScreen.HasValue)
-                return;
-
-            var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, primaryScreen.Value, _settings.Store.NotificationPosition) { Owner = mainWindow };
-            if (_settings.Store.NotificationAlwaysOnTop)
-            {
-                var bitmap = nw.GetBitmapView();
-                var nwaot = new NotificationAoTWindow(bitmap, primaryScreen.Value, _settings.Store.NotificationPosition);
-                nwaot.Show(_settings.Store.NotificationDuration switch
-                {
-                    NotificationDuration.Short => 500,
-                    NotificationDuration.Long => 2500,
-                    NotificationDuration.Normal => 1000,
-                    _ => throw new ArgumentException(nameof(_settings.Store.NotificationDuration))
-                });
-                _windows.Add(nwaot);
-            }
-            else
-            {
+                Owner = mainWindow,
+                WindowStyle = WindowStyle.None,     // Remove borders and title bar
+                AllowsTransparency = true,          // Enable transparency
+                Background = Brushes.Transparent,  // Set background to transparent
+                ShowInTaskbar = false              // Hide notification window from the taskbar
+                };
+                nw.Opacity = 0.6;
                 nw.Show(_settings.Store.NotificationDuration switch
                 {
                     NotificationDuration.Short => 500,
@@ -301,6 +261,26 @@ public class NotificationsManager
                 });
                 _windows.Add(nw);
             }
+        }
+        else
+        {
+            var nw = new NotificationWindow(symbol, overlaySymbol, symbolTransform, text, clickAction, ScreenHelper.PrimaryScreen, _settings.Store.NotificationPosition) 
+            {
+            Owner = mainWindow,
+            WindowStyle = WindowStyle.None,     // Remove borders and title bar
+            AllowsTransparency = true,          // Enable transparency
+            Background = Brushes.Transparent,  // Set background to transparent
+            ShowInTaskbar = false              // Hide notification window from the taskbar
+            };
+            nw.Opacity = 0.6;
+            nw.Show(_settings.Store.NotificationDuration switch
+            {
+                NotificationDuration.Short => 500,
+                NotificationDuration.Long => 2500,
+                NotificationDuration.Normal => 1000,
+                _ => throw new ArgumentException(nameof(_settings.Store.NotificationDuration))
+            });
+            _windows.Add(nw);
         }
     }
 
